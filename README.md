@@ -1,6 +1,6 @@
-#Hux Blog
+#Zhang doudou Blog
 
-###[View Live Hux Blog &rarr;](https://huangxuan.me)
+###[Click Here &rarr;](https://huangxuan.me)
 
 ![](http://huangxuan.me/img/blog-desktop.jpg)
 
