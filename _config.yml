@@ -3,39 +3,31 @@ title: Zhang doudou's Blog
 SEOTitle: 张豆豆的博客 | Zhang doudou's Blog
 header-img: img/home-bg.jpg
 email: huxpro@gmail.com
-description: "集理性与文艺于一身，赋气质与才华予一体"
-keyword: "张豆豆的博客, 互联网, Web, JavaScript, 前端, 电影, 经济学, 心理学, 读书"
-url: "http://www.miaodou.xin"              # your host, for absolute URL
-baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
-
-
+description: '集理性与文艺于一身，赋气质与才华予一体'
+keyword: '张豆豆的博客, 互联网, Web, JavaScript, 前端, 电影, 经济学, 心理学, 读书'
+url: 'https://www.sctsdsy.com/' # your host, for absolute URL
+baseurl: '' # for example, '/blog' if your blog hosted on 'host/blog'
 
 # SNS settings
 RSS: false
-weibo_username:     朝朝朝阳落落落日
+weibo_username: 朝朝朝阳落落落日
 #zhihu_username:
-github_username:    code-coder
+github_username: code-coder
 #twitter_username:   huxpro
 #facebook_username:  huxpro
 # linkedin_username:  firstname-lastname-idxxxx
-
-
 
 # Build settings
 # from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
 highlighter: rouge
 permalink: pretty
 paginate: 10
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","README.zh.md"]
-anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
-
-
+exclude: ['less', 'node_modules', 'Gruntfile.js', 'package.json', 'README.md', 'README.zh.md']
+anchorjs: true # if you want to customize anchor. check out line:181 of `post.html`
 
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0
 gems: [jekyll-paginate]
-
-
 
 # Markdown settings
 # replace redcarpet to kramdown,
@@ -43,9 +35,7 @@ gems: [jekyll-paginate]
 # document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
 kramdown:
-  input: GFM                            # use Github Flavored Markdown !important
-
-
+  input: GFM # use Github Flavored Markdown !important
 
 # Disqus settings
 disqus_username: zhangdoudou
@@ -53,36 +43,26 @@ disqus_username: zhangdoudou
 # Netease setttings
 netease_comment: false
 
-
-
 # Analytics settings
-# Baidu Analytics 
+# Baidu Analytics
 # ba_track_id: [your track id]
 
 # Google Analytics
 #ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
 #ga_domain: huangxuan.me
 
-
-
 # Sidebar settings
-sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "知世故而不世故，处江湖而远江湖"
-sidebar-avatar: /img/zhangdoudou-avatar.jpeg      # use absolute URL, seeing it's used in both `/` and `/about/`
-
-
+sidebar: true # whether or not using Sidebar.
+sidebar-about-description: '知世故而不世故，处江湖而远江湖'
+sidebar-avatar: /img/zhangdoudou-avatar.jpeg # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
-featured-tags: true                     # whether or not using Feature-Tags
-featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
-
-
+featured-tags: true # whether or not using Feature-Tags
+featured-condition-size: 1 # A tag will be featured if the size of it is more than this condition value
 
 # Progressive Web Apps
-chrome-tab-theme-color: "#000000"
+chrome-tab-theme-color: '#000000'
 service-worker: true
-
-
 
 # Friends
 #friends: [
