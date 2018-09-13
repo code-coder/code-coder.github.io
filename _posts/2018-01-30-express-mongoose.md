@@ -1,82 +1,82 @@
 ---
-layout:     post
-title:      "使用Express、Mongoose快速搭建一个项目"
-subtitle:   " \"Hello World, Hello Blog\""
-date:       2018-01-30 21:00:00
-author:     "张豆豆"
-header-img: "img/post-bg-2015.jpg"
+layout: post
+title: '使用Express、Mongoose快速搭建一个项目'
+subtitle: ' "Hello World, Hello Blog"'
+date: 2018-01-30 21:00:00
+author: '张豆豆'
+header-img: 'img/post-bg-2015.jpg'
 catalog: true
 tags:
-    - Angular
-    - Node.js
-    - Express
-    - Mongoose
+  - 教程
+  - Angular
+  - Node.js
+  - Express
+  - Mongoose
 ---
 
 > “人生就是瞎折腾 ”
 
-
 ## 前言
+
 闲着无事的时候终于想着要搭一个博客，后来又因为太忙，闲置了一段时间。终于又在一个百无聊赖的时候，准备还是发上第一篇博客吧。
 
-在我准备2017年校友会的时候的，我准备做一个 **通讯录** 小系统，一边搭建一边写写记录，顺便也就把搭建过程分享出来。
+在我准备 2017 年校友会的时候的，我准备做一个 **通讯录** 小系统，一边搭建一边写写记录，顺便也就把搭建过程分享出来。
 
-我是用Express、Mongoose、Angular4做的一套完整的系统，虽然后面没用上~ 🤣。
+我是用 Express、Mongoose、Angular4 做的一套完整的系统，虽然后面没用上~ 🤣。
+
+---
+
+##开发准备 ###安装 Node.js
+
+去 Node.js[官网](https://nodejs.org/en/)下载最新的稳定版安装  
+###安装 MongoDB
+
+我是用 Mac 👉 [安装教程](https://www.jianshu.com/p/2d0a1ecd0c82)
+
+Windows 👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html) ###安装 WebStorm
+推荐 👉 [官网下载](https://www.jetbrains.com/webstorm/)，网上[激活](http://blog.csdn.net/voke_/article/details/76418116)方式也有很多
 
 ---
 
-##开发准备
-###安装Node.js
-
-去Node.js[官网](https://nodejs.org/en/)下载最新的稳定版安装   
-###安装MongoDB
-
-我是用Mac  👉 [安装教程](https://www.jianshu.com/p/2d0a1ecd0c82)
-
-Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
-###安装WebStorm
-推荐   👉 [官网下载](https://www.jetbrains.com/webstorm/)，网上[激活](http://blog.csdn.net/voke_/article/details/76418116)方式也有很多
-
----
 ##开始搭建项目
-首先，安装[Express](http://www.expressjs.com.cn/starter/generator.html)，及Express项目生成器   
-`$ npm install express -g`   
-`$ npm install express-generator -g`  
+首先，安装[Express](http://www.expressjs.com.cn/starter/generator.html)，及 Express 项目生成器  
+`$ npm install express -g`  
+`$ npm install express-generator -g`
 
-快速生成Express项目    
-`$ express contact-express`   
+快速生成 Express 项目  
+`$ express contact-express`
 
-下载项目依赖       
-`$ cd contact-express `   
-`$ npm install`   
+下载项目依赖  
+`$ cd contact-express`  
+`$ npm install`
 
-最后，启动这个应用。   
-`$ npm start`   
+最后，启动这个应用。  
+`$ npm start`
 
-不过，这个命令不会监听代码变化实时更新到界面。   
-为了开发方便，我们安装nodemon来实现 **实时编译**
-      
+不过，这个命令不会监听代码变化实时更新到界面。  
+为了开发方便，我们安装 nodemon 来实现 **实时编译**
+  
 `npm install -g nodemon`
 
-新增app-script启动入口，在package.json中增加   
+新增 app-script 启动入口，在 package.json 中增加
 
     "scripts": {
         "start": "node ./bin/www",
         "nodemon start": "nodemon app.js"
     }
 
-开发工具我选择的是WebStorm。这个工具我就不介绍了，点击左下角npm可以打开npm窗，双击 **nodemon start** 快速启动。   
-使用WebStorm打开的目录是这样：   
+开发工具我选择的是 WebStorm。这个工具我就不介绍了，点击左下角 npm 可以打开 npm 窗，双击 **nodemon start** 快速启动。  
+使用 WebStorm 打开的目录是这样：
 
 ![](/img/in-post/post-express-angular/image.png)
 
-#####安装Mongoose
+#####安装 Mongoose
 
 `$ npm install mongoose --save`
 
-在根目录下新建一个config.js，我们把配置放到一个文件中方便管理。
+在根目录下新建一个 config.js，我们把配置放到一个文件中方便管理。
 
-    var config = { 
+    var config = {
         // debug 为 true 时，用于本地调试
         debug: true,
         cookieSecret: 'contact',
@@ -88,8 +88,7 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
     };
     module.exports = config;
 
-
-然后新建数据库连接文件database.js：
+然后新建数据库连接文件 database.js：
 
     //引入mongoose模块
     var mongoose = require('mongoose');
@@ -98,7 +97,7 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
     var DB_URL = config.db;
     //数据库连接
     mongoose.connect(DB_URL);
-    
+
     //连接成功终端显示消息
     mongoose.connection.on('connected', function () {
        console.log('mongoose connection open to ' + DB_URL)
@@ -111,10 +110,10 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
     mongoose.connection.on('disconnected', function () {
        console.log('mongoose disconnected')
     });
-    
+
     //创建一个Schema  每一个schema会一一对应mongo中的collection
     var schema = mongoose.Schema;
-    
+
     //实例化一个Schema
     var ContactSchema = new schema(
        {
@@ -140,8 +139,8 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
     var contact = mongoose.model('Contact', ContactSchema);
     //将Student的model导出
     module.exports = contact;
-    
-修改app.js，增加启动入口：
+
+修改 app.js，增加启动入口：
 
     var express = require('express');
     var path = require('path');
@@ -150,20 +149,20 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
     var cookieParser = require('cookie-parser');
     var bodyParser = require('body-parser');
     var config = require('./config');
-    
+
     var index = require('./routes/index');
     var users = require('./routes/users');
-    
+
     var app = express();
-    
+
     app.set('port', process.env.PORT || config.port);
     // view engine setup
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'ejs');
-    
+
     app.use(bodyParser.urlencoded({extended:false}));
     app.use(bodyParser.json());
-    
+
     // 允许跨域访问／／／
     app.all('/api/*', function (req, res, next) {
        res.header('Access-Control-Allow-Origin', '*');
@@ -173,7 +172,7 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
        res.header('Content-Type', 'application/json;charset=utf-8');
        next()   //执行下一个中间件。
     });
-    
+
     // uncomment after placing your favicon in /public
     //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
     app.use(logger('dev'));
@@ -181,49 +180,49 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
     app.use(bodyParser.urlencoded({extended: false}));
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, 'public')));
-    
+
     app.use('/', index);
     app.use('/users', users);
-    
+
     //服务器监听端口
     app.listen(app.get('port'),function(){
        console.log('Express server lisening on port' + app.get('port'));
     });
-    
+
     // catch 404 and forward to error handler
     app.use(function (req, res, next) {
        var err = new Error('Not Found');
        err.status = 404;
        next(err);
     });
-    
+
     // error handler
     app.use(function (err, req, res, next) {
        // set locals, only providing error in development
        res.locals.message = err.message;
        res.locals.error = req.app.get('env') === 'development' ? err : {};
-    
+
        // render the error page
        res.status(err.status || 500);
        res.render('error');
     });
-    
+
     module.exports = app;
 
-然后就可以使用mongoose啦！
+然后就可以使用 mongoose 啦！
 
-在routes/index.js里实现增删改查的restful接口：
+在 routes/index.js 里实现增删改查的 restful 接口：
 
     var express = require('express');
     var Contact = require('../database').contact;
-    
+
     var router = express.Router();
-    
+
     /* GET home page. */
     router.get('/', function (req, res, next) {
         res.render('index');
     });
-    
+
     router.get('/contactList', function (req, res, next) {
         Contact.find({}).exec(function (error, data) {
             if (error) {
@@ -245,7 +244,7 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
             }
         })
     });
-    
+
     // 新增联系人
     router.post('/addContact', function (req, res, next) {
         var contact = new Contact({
@@ -277,7 +276,7 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
             }
         });
     });
-    
+
     // 删除联系人
     router.get('/removeContact',function (req,res) {
         //mongoose根据指定条件进行删除
@@ -297,7 +296,7 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
             }
         })
     });
-    
+
     router.post('/updateContact',function (req,res) {
         //查询的条件
         var whereStr={_id:req.body.id};
@@ -334,7 +333,7 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
             }
         })
     });
-    
+
     // 根据id查找
     router.post('/modify',function (req,res) {
         //mongoose根据条件进行查找
@@ -352,7 +351,7 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
             }
         })
     });
-    
+
     // 根据姓名查找
     router.post('/findByName',function (req,res) {
         student.find({name: req.body.searchName}).exec(function (error,data) {
@@ -372,15 +371,13 @@ Windows  👉 [安装教程](https://www.cnblogs.com/cbw-mango/p/7987682.html)
             }
         })
     });
-    
+
     module.exports = router;
 
-在浏览器输入地址：**localhost:3300/contactList** 就可以看到返回的json数据啦！
+在浏览器输入地址：**localhost:3300/contactList** 就可以看到返回的 json 数据啦！
 
 服务端已经搭建完毕啦，后面我再更新客户端的快速搭建吧~
 
 ## 后记
 
->身为一个有梦想的程序员，怎么能会没有自己的博客呢~
-
-
+> 身为一个有梦想的程序员，怎么能会没有自己的博客呢~
