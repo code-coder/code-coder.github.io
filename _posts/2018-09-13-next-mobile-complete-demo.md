@@ -1,10 +1,10 @@
 ---
 layout: post
-title: 'Next 框架与主流工具的整合'
-subtitle: ' 一堆工具 redux + redux-saga + koa + sass + postcss + ant-design-mobile'
+title: "Next 框架与主流工具的整合"
+subtitle: " 一堆工具 redux + redux-saga + koa + sass + postcss + ant-design-mobile"
 date: 2018-09-12 21:00:00
-author: '张豆豆'
-header-img: 'img/post-bg-2015.jpg'
+author: "张豆豆"
+header-img: "img/post-bg-rwd.jpg"
 catalog: true
 tags:
   - 教程
@@ -21,7 +21,7 @@ tags:
 
 ## 前言
 
-老大说以后会用 next 来做一下 SSR 的项目，让我们有空先学学。又从 0 开始学习新的东西了，想着还是记录一下学习历程，有输入就要有输出吧，免得以后给忘记学了写什么~
+老大说以后会用 next 来做一下 SSR 的项目，让我们有空先学学。又从 0 开始学习新的东西了，想着还是记录一下学习历程，有输入就要有输出吧，免得以后给忘记学了些什么~
 
 ---
 
@@ -29,7 +29,7 @@ tags:
 
 github 地址：[https://github.com/code-coder/next-mobile-complete-app](https://github.com/code-coder/next-mobile-complete-app)
 
-##### 首先，clone 了 next.js 项目，学习里面的 templates。
+##### 首先，clone [Next.js](https://github.com/zeit/next.js) 项目，学习里面的 templates。
 
 ##### 打开一看，我都惊呆了，差不多有 150 个搭配工具个 template，有点眼花缭乱。
 
@@ -41,14 +41,14 @@ github 地址：[https://github.com/code-coder/next-mobile-complete-app](https:/
 
 ### 做一个项目就像造一所房子，最开始就是“打地基”：
 
-#### 1. 新建了一个项目，用的是这里面的 [with-redux-saga ](https://github.com/zeit/next.js/tree/canary/examples/with-redux-saga)。
+#### 1. 新建了一个项目，用的是这里面的一个 with-redux-saga 的 template [戳这里](https://github.com/zeit/next.js/tree/canary/examples/with-redux-saga)。
 
 #### 2. 添加 sass 和 postcss，参考的是 [这里](https://github.com/zeit/next-plugins/tree/master/packages/next-sass)
 
 - 新建`next.config.js`，复制以下代码：
 
 ```js
-const withSass = require('@zeit/next-sass');
+const withSass = require("@zeit/next-sass");
 module.exports = withSass({
   postcssLoaderOptions: {
     parser: true,
@@ -127,6 +127,7 @@ app.prepare().then(() => {
     console.log(`> Ready on http://localhost:${port}`);
   });
 });
+
 ```
 
 - 然后在配置一下`package.json`的 scripts
@@ -169,7 +170,7 @@ app.prepare().then(() => {
 
 #### 2. layout 布局设计。
 
-`ant design` 一直是使用过而且比较有好感的 UI 框架。既然这是移动端的项目，[ant design mobile](https://mobile.ant.design/docs/react/introduce-cn) 成了首选的框架。我也看了其他的主流 UI 框架，现在流行的 UI 框架有[Amaze UI](http://amazeui.org/getting-started)、[Mint UI](https://mint-ui.github.io/#!/zh-cn)、[Frozen UI](http://frozenui.github.io/)等等，个人还是比较喜欢 ant design 出品的。
+`ant design` 是我使用过而且比较有好感的 UI 框架。既然这是移动端的项目，[ant design mobile](https://mobile.ant.design/docs/react/introduce-cn) 成了首选的框架。我也看了其他的主流 UI 框架，现在流行的 UI 框架有[Amaze UI](http://amazeui.org/getting-started)、[Mint UI](https://mint-ui.github.io/#!/zh-cn)、[Frozen UI](http://frozenui.github.io/)等等，个人还是比较喜欢`ant`出品的。
 
 恰好 templates 中有 ant design mobile 的 demo：[with-ant-design-mobile](https://github.com/zeit/next.js/tree/canary/examples/with-antd-mobile)。
 
@@ -188,6 +189,7 @@ app.prepare().then(() => {
     ]
   ]
 }
+
 ```
 
 - **修改 next.config.js 为：**
@@ -242,57 +244,86 @@ module.exports = withSass({
     return config;
   }
 });
-```
-
-- **static 新增 hd.min.js**
 
 ```
-// 这里做了一些小改动，meta标签固定1倍，根节点的fontSize为375设计稿 / 10px
-!(function(e) {
-  function t(a) {
-    if (i[a]) return i[a].exports;
-    var n = (i[a] = { exports: {}, id: a, loaded: !1 });
-    return e[a].call(n.exports, n, n.exports, t), (n.loaded = !0), n.exports;
-  }
-  var i = {};
-  return (t.m = e), (t.c = i), (t.p = ''), t(0);
-})([
-  function(e, t) {
-    'use strict';
-    Object.defineProperty(t, '__esModule', { value: !0 });
-    var i = window;
-    (t['default'] = i.flex = function(e, t) {
-      var a = e || 10,
-        n = t || 1,
-        r = i.document,
-        o = navigator.userAgent,
-        d = o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),
-        l = o.match(/U3\/((\d+|\.){5,})/i),
-        c = l && parseInt(l[1].split('.').join(''), 10) >= 80,
-        p = navigator.appVersion.match(/(iphone|ipad|ipod)/gi),
-        s = i.devicePixelRatio || 1;
-      p || (d && d[1] > 534) || c || (s = 1);
 
-      var u = 1,
-        m = r.querySelector('meta[name="viewport"]');
-      m || ((m = r.createElement('meta')), m.setAttribute('name', 'viewport'), r.head.appendChild(m)),
-        m.setAttribute(
-          'content',
-          'width=device-width,user-scalable=no,initial-scale=' + u + ',maximum-scale=' + u + ',minimum-scale=' + u
-        ),
-        (r.documentElement.style.fontSize = (a / 2) * s * n + 'px');
-    }),
-      (e.exports = t['default']);
+- **static 新增 rem.js**
+
+```
+(function(doc, win) {
+  var docEl = doc.documentElement,
+    // isIOS = navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+    // dpr = isIOS ? Math.min(win.devicePixelRatio, 3) : 1;
+    // dpr = window.top === window.self ? dpr : 1; //被iframe引用时，禁止缩放
+    dpr = 1;
+  var scale = 1 / dpr,
+    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+  docEl.dataset.dpr = dpr;
+  var metaEl = doc.createElement('meta');
+  metaEl.name = 'viewport';
+  metaEl.content =
+    'initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale + ',user-scalable=no';
+  docEl.firstElementChild.appendChild(metaEl);
+  var recalc = function() {
+    var width = docEl.clientWidth;
+    // 大于1280按1280来算
+    if (width / dpr > 1280) {
+      width = 1280 * dpr;
+    }
+    // 乘以100，px : rem = 100 : 1
+    docEl.style.fontSize = 100 * (width / 375) + 'px';
+    doc.body &&
+      doc.body.style.height !== docEl.clientHeight &&
+      docEl.clientHeight > 360 &&
+      (doc.body.style.height = docEl.clientHeight + 'px');
+  };
+  recalc();
+
+  if (!doc.addEventListener) return;
+  win.addEventListener(resizeEvt, recalc, false);
+  win.onload = () => {
+    doc.body.style.height = docEl.clientHeight + 'px';
+  };
+})(document, window);
+
+```
+
+- **增加移动端设备及微信浏览器的判断**
+
+```
+(function() {
+  // 判断移动PC端浏览器和微信端浏览器
+  var ua = navigator.userAgent;
+  // var ipad = ua.match(/(iPad).* OS\s([\d _] +)/);
+  var isAndroid = ua.indexOf('Android') > -1 || ua.indexOf('Adr') > -1; // android
+  var isIOS = !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios
+  if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+    window.isAndroid = isAndroid;
+    window.isIOS = isIOS;
+    window.isMobile = true;
+  } else {
+    // 电脑PC端判断
+    window.isDeskTop = true;
   }
-]);
-flex(10, 1);
+  ua = window.navigator.userAgent.toLowerCase();
+  if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+    window.isWeChatBrowser = true;
+  }
+})();
 ```
 
 - **\_document.js 新增引用**：
 
 ```html
-<script src="/static/hd.min.js" />
-<link rel="stylesheet" type="text/css" href="//unpkg.com/antd-mobile/dist/antd-mobile.min.css" />
+<head>
+  <script src="/static/rem.js" />
+  <script src="/static/user-agent.js" />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="//unpkg.com/antd-mobile/dist/antd-mobile.min.css"
+  />
+</head>
 ```
 
 - **构造布局**
@@ -368,17 +399,15 @@ let onLeftClick = () => {
 };
 ```
 
-> **需要留意的是，在同一个页面改变 query，不会覆盖 history 的记录，而是增加一条，因此调用 history.back()只是根据浏览器地址记录返回。这里可以再做优化。**
+#### 3、请求拦截、loading 及错误处理
 
-#### 3、请求拦截、loading 状态及错误处理
-
-- **封装 fetch 请求，使用单例模式对请求增加 Authrition 授权、全局 loading 等处理。**
+- **封装 fetch 请求，使用单例模式对请求增加全局 loading 等处理。**
   > 要点：1、单例模式。2、延迟 loading。3、server 端渲染时不能加载 loading，因为 loading 是通过 document 对象操作的
 
 ```
-// /api/proxyFetch.js
 import { Toast } from 'antd-mobile';
 import 'isomorphic-unfetch';
+import Router from 'next/router';
 
 // 请求超时时间设置
 const REQUEST_TIEM_OUT = 10 * 1000;
@@ -388,9 +417,8 @@ const LOADING_TIME_OUT = 1000;
 class ProxyFetch {
   constructor() {
     this.fetchInstance = null;
-    this.urlPrefix = '';
-    this.headers = { 'Content-Type': 'application/json', DeviceId: 'android/ios' };
-    this.init = { credentials: 'omit', headers: this.headers };
+    this.headers = { 'Content-Type': 'application/json' };
+    this.init = { credentials: 'include', mode: 'cors' };
     // 处理loading
     this.requestCount = 0;
     this.isLoading = false;
@@ -437,90 +465,98 @@ class ProxyFetch {
 
   /**
    * get请求
-   * @param {*} url
-   * @param {*} params
+   * @param {String} url
+   * @param {Object} params
+   * @param {Object} settings: { isServer, noLoading, cookies }
    */
-  async get(url, params = {}, isServer = false) {
+  async get(url, params = {}, settings = {}) {
     const options = { method: 'GET' };
     if (params) {
       let paramsArray = [];
       // encodeURIComponent
-      Object.keys(params).forEach(key => paramsArray.push(key + '=' + params[key]));
+      Object.keys(params).forEach(key => {
+        if (params[key] instanceof Array) {
+          const value = params[key].map(item => '"' + item + '"');
+          paramsArray.push(key + '=[' + value.join(',') + ']');
+        } else {
+          paramsArray.push(key + '=' + params[key]);
+        }
+      });
       if (url.search(/\?/) === -1) {
         url += '?' + paramsArray.join('&');
       } else {
         url += '&' + paramsArray.join('&');
       }
     }
-    return await this.dofetch(url, options, isServer);
+    return await this.dofetch(url, options, settings);
   }
 
   /**
    * post请求
-   * @param {*} url
-   * @param {*} params
+   * @param {String} url
+   * @param {Object} params
+   * @param {Object} settings: { isServer, noLoading, cookies }
    */
-  async post(url, params = {}, isServer = false) {
+  async post(url, params = {}, settings = {}) {
     const options = { method: 'POST' };
-    let data = '';
-    switch (params.bodyType) {
-      case 'form':
-        options.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-        Object.keys(params.bodys).map(index => {
-          let param = encodeURI(params.bodys[index]);
-          data += `${index}=${param}&`;
-        });
-        options.body = data;
-        break;
-      case 'file':
-        data = new FormData();
-        Object.keys(params.bodys).map(index => {
-          data.append(index, params.bodys[index]);
-        });
-        options.body = data;
-        break;
-      default:
-        options.body = JSON.stringify(params);
-        break;
-    }
-    return await this.dofetch(url, options, isServer);
+    options.body = JSON.stringify(params);
+    return await this.dofetch(url, options, settings);
   }
 
   /**
    * fetch主函数
    * @param {*} url
    * @param {*} options
-   * @param {boolean} isServer 是否是服务端渲染的请求
-   * @param {boolean} setAuthorization 登录接口设置Authorization
+   * @param {Object} settings: { isServer, noLoading, cookies }
    */
-  dofetch(url, options, isServer, setAuthorization) {
-    !isServer && this.showLoading();
+  dofetch(url, options, settings = {}) {
+    const { isServer, noLoading, cookies = {} } = settings;
+    let loginCondition = false;
+    if (isServer) {
+      this.headers.cookies = 'cookie_name=' + cookies['cookie_name'];
+    }
+    if (!isServer && !noLoading) {
+      loginCondition = Router.route.indexOf('/login') === -1;
+      this.showLoading();
+    }
+    const prefix = isServer ? process.env.BACKEND_URL_SERVER_SIDE : process.env.BACKEND_URL;
     return Promise.race([
-      fetch(this.urlPrefix + url, { ...this.init, ...options }),
+      fetch(prefix + url, { headers: this.headers, ...this.init, ...options }),
       new Promise((resolve, reject) => {
         setTimeout(() => reject(new Error('request timeout')), REQUEST_TIEM_OUT);
       })
     ])
       .then(response => {
-        !isServer && this.hideLoading();
-        if (setAuthorization) {
-          this.headers.Authorization = response.json().token;
-          return {};
+        !isServer && !noLoading && this.hideLoading();
+        if (response.status === 500) {
+          throw new Error('服务器内部错误');
+        } else if (response.status === 404) {
+          throw new Error('请求地址未找到');
+        } else if (response.status === 401) {
+          if (loginCondition) {
+            Router.push('/login?directBack=true');
+          }
+          throw new Error('请先登录');
+        } else if (response.status === 400) {
+          throw new Error('请求参数错误');
+        } else if (response.status === 204) {
+          return { success: true };
         } else {
-          return response;
+          return response && response.json();
         }
       })
       .catch(e => {
-        if (!server) {
+        if (!isServer && !noLoading) {
           this.hideLoading();
-          Toast.fail(e.message);
+          Toast.info(e.message);
         }
-        return { ok: false, status: '501', statusText: e.message };
+        return { success: false, statusText: e.message };
       });
   }
 }
 
 export default ProxyFetch.getInstance();
+
 ```
 
 ## 写在最后
