@@ -19,7 +19,7 @@ $ git clone git@github.com:Huxpro/huxblog-boilerplate.git
 
 ## Translation
 
-- ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: 感谢 [@BrucZhaoR](https://github.com/BruceZhaoR) 的 [中文翻译 &rarr;](https://github.com/Huxpro/huxpro.github.io/blob/master/README.zh.md)
+- ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: 感谢 [@BrucZhaoR](https://github.com/BruceZhaoR) 的 [中文翻译 &rarr;](https://github.com/code-coder/code-coder.github.io/blob/master/README.zh.md)
 
 ## Features
 
@@ -81,19 +81,27 @@ $ git clone git@github.com:Huxpro/huxblog-boilerplate.git
 
 - Get Started
   _ [Environment](#environment)
+
   _ [Get Started](#get-started) \* [Write Posts](#write-posts)
 - Components
   _ [SideBar](#sidebar)
+
   _ [Mini About Me](#mini-about-me)
+
   _ [Featured Tags](#featured-tags)
+
   _ [Friends](#friends) \* [Keynote Layout](#keynote-layout)
 - Comment & Analysis
   _ [Comment](#comment)
+
   _ [Analytics](#analytics)
 - Advanced
   _ [Customization](#customization)
+
   _ [Header Image](#header-image)
+
   _ [SEO Title](#seo-title)
+
   _ [Page Build Warning](#page-build-warning)
 
 #### Environment
